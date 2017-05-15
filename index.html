@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title>ADSI</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <nav>
+    <ul class="navigationBar" id="navBar">
+      <li class="logo">
+        <a href="#">
+          <img src="img/logo.svg" />
+        </a>
+      </li>
+      <li class="list one">
+        <a href=#sobre-nosotros onclick="myMenuBreak()">About me</a>
+      </li>
+      <li class="list three">
+        <a href=#programa onclick="myMenuBreak()">Projects</a>
+      </li>
+      <li class="list four">
+        <a href=#visitanos onclick="myMenuBreak()">Contact me</a>
+      </li>
+      <li class="styleLs icon responsiveMenu">
+        <a href="javascript:void(0);" onclick="myFunction()">
+          <span>
+            &#9776;
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="imgBackTest first"></div>
+
+  <section id="sobre-nosotros" class="paddingApply sectPurp">
+    <h2 class="heading">About Me</h2>
+    <hr class="hrStyle">
+    <p class="textP toWhite">Welcome Everyone!
+    </p>
+    <p class="textPr toWhite">
+      My name is Diego Hurtado. UX/UI designer wanting to improve myself and my work via the projects I've worked on. Currently studying at the University of Sonora, I seek to apply my knowledge and my skills to help develop apps that people can enjoy, both in design and usability, while also learning from each experience and from the people around me.
+      I also do art, but this is not what this page is all about. 
+    </p>
+    
+    <p class="paddingApply"></p>
+    <!--<div class="divContainer sectionDiv">
+      <div class="divInner">
+        <p class="textBlue">
+          Misión
+        </p>
+        <p class="textPr toWhite">Somos una empresa en donde nos enfocamos en mejorar la calidad de vida de las personas a través de un menú rico y saludable.
+          Contamos con un servicio de asesoría y tratamiento nutricional profesional con planes de alimentación personalizados
+          y una educación constante para lograr cambios efectivos que se conviertan en hábitos permanentes. Ofrecemos un espacio
+          y atmósfera agradables con un sentido ecológico que permite a los clientes disfrutar de momentos de calidad y tranquilidad.
+        </p>
+      </div>
+      <div class="divInner">
+        <p class="textBlue">
+          Visión
+        </p>
+        <p class="textPr toWhite">Somos una empresa socialmente responsable que ha llevado los temas de salud y nutrición a un nuevo concepto y nivel
+          de aceptación en la región noroeste, siendo así, un restaurante que tiene un impacto social que permite realizar
+          cambios en los estilos de vida de las personas. Hemos desarrollado procesos y métodos modernos e innovadores para
+          la trata de enfermedades crónico degenerativas a causa del sobrepeso y la obesidad. Alcanzaremos una expansión y
+          crecimiento en por lo menos 3 sucursales en el Estado de Sonora.
+        </p>
+      </div>
+      <div class="divInner">
+        <p class="textBlue">
+          Valores
+        </p>
+        <p class="textPr">
+          <ul style="margin: 0">
+            <li class="textPr toWhite">Alegría</li>
+            <li class="textPr toWhite">Compromiso</li>
+            <li class="textPr toWhite">Honestidad</li>
+            <li class="textPr toWhite">Compañerismo</li>
+            <li class="textPr toWhite">Respeto</li>
+            <li class="textPr toWhite">Humildad</li>
+            <li class="textPr toWhite">Lealtad</li>
+            <li class="textPr toWhite">Felicidad</li>
+          </ul>
+        </p>
+      </div>
+    </div>-->
+  </section>
+
+
+
+  <div class="imgBack1"></div>
+
+  <section id="programa" class="paddingApply sectBlu">
+    <h2 class="heading">Projects</h2>
+    <hr class="hrStyle">
+    <p class="textPr toWhite">En Benessere nos preocupamos por tu estilo de vida y es por ello que hemos diseñado un programa para ayudarte no sólo a
+      comer mejor si no también a crear hábitos saludables que permitan cambiar tu estilo de vida y vivir de manera plena permanentemente.
+      Nuestro programa se adapta a las necesidades de cada persona y ayuda a la prevención de enfermedades a causa del sobrepeso
+      y obesidad. También trabajamos y elaboramos planes para personas que ya tengan o sufran de algún padecimiento cómo diabetes
+      o hipertensión.
+    </p>
+  <p class="paddingApply"></p>
+  </section>
+
+<div class="imgBack2"></div>
+
+  <section id="visitanos" class="paddingApply sectRed">
+    <p class="heading">Contact Me</p>
+    <hr class="hrStyle">
+    <p class="textP toWhite">
+      For business inquiries send an e-mail to diego.hc@live.com. In social media, you can find me at:
+    </p>
+    <p class="textP toWhite">
+      <a href="https://www.facebook.com/TempestFalcon" class="notHover"><img src="img/facebook.svg" alt="Facebook" style="width: 75px"></a>
+      <a href="https://www.twitter.com/TempestFalcon" class="notHover"><img src="img/twitter.svg" alt="Twitter" style="width: 75px"></a>
+    </p>
+    <p class="paddingApply"></p>
+  </section>
+
+
+  <footer>
+    <p class="textP textSmall"> © Diego Hurtado 2017.</p>
+  </footer>
+
+  <script>
+    function generarDatosAEnviar (formData) {
+      var datos = {}
+      for (var input of formData) {
+        datos[input[0]] = input[1]
+      }
+      return datos;
+    }
+    document.forms[0].addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        return;
+      }
+      fetch('/contacto', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(generarDatosAEnviar(new FormData(document.forms[0])))
+      })
+      .then(function (response) {
+        if (response.status >= 200 && response.status < 300) {
+          return response.json()
+        } else {
+          throw new Error(response.statusText);
+        }
+      })
+      .then(function (data) {
+        alert("Éxito al enviar el correo.");
+      })
+      .catch(function (error) {
+        alert("Hubo un problema al enviar el correo.");
+      });
+    });
+
+    function myFunction() {
+      var x = document.getElementById("navBar");
+      if (x.className === "navigationBar") {
+        x.className += " responsive";
+      } else {
+        x.className = "navigationBar";
+      }
+    }
+
+    function myMenuBreak() {
+      var x = document.getElementById("navBar");
+      if (x.className === "navigationBar responsive") {
+        x.className = "navigationBar";
+      }
+    }
+
+  </script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700|Roboto:300" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <script>
+    $(function () {
+      $('a[href*=#]:not([href=#])').click(function () {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            }, 1000);
+            return false;
+          }
+        }
+      });
+    });
+  </script>
+
+  <script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+    }
+  </script>
+
+</body>
+
+</html>
